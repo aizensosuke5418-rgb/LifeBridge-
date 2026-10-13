@@ -1,0 +1,6 @@
+{
+  "name": "LifeBridge",
+  "description": "India's Unified Government Schemes, Benefits, Public Services and Application Guidance Platform.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
