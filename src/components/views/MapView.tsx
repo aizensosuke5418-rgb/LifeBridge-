@@ -24,15 +24,16 @@ export const MapView: React.FC = () => {
   const [locationStatus, setLocationStatus] = useState<'idle' | 'locating' | 'granted' | 'denied'>('idle');
 
   const layerOptions = [
-    { key: 'all', labelEn: 'All 8 Layers', labelKn: 'ಎಲ್ಲಾ ೮ ಪದರಗಳು', count: PUBLIC_FACILITIES_DATABASE.length, color: '#3678F6' },
-    { key: 'hospital', labelEn: '1. Hospitals', labelKn: '೧. ಆಸ್ಪತ್ರೆಗಳು', count: 3, color: '#EF4444' },
-    { key: 'phc', labelEn: '2. Primary Health (PHC)', labelKn: '೨. ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ', count: 2, color: '#10B981' },
-    { key: 'chc', labelEn: '3. Community Health (CHC)', labelKn: '೩. ಸಮುದಾಯ ಆರೋಗ್ಯ', count: 1, color: '#06B6D4' },
-    { key: 'school', labelEn: '4. Schools', labelKn: '೪. ಶಾಲೆಗಳು', count: 2, color: '#F59E0B' },
-    { key: 'college', labelEn: '5. Colleges & Univ', labelKn: '೫. ಕಾಲೇಜುಗಳು', count: 2, color: '#8B5CF6' },
-    { key: 'iti', labelEn: '6. ITIs & Vocational', labelKn: '೬. ಐಟಿಐ', count: 1, color: '#EC4899' },
-    { key: 'fair_price_shop', labelEn: '7. Fair Price Shops', labelKn: '೭. ರೇಷನ್ ಅಂಗಡಿಗಳು', count: 2, color: '#F97316' },
-    { key: 'service_centre', labelEn: '8. Bangalore One Centres', labelKn: '೮. ಬೆಂಗಳೂರು ಒನ್', count: 2, color: '#3B82F6' }
+    { key: 'all', labelEn: 'All Bengaluru Facilities', labelKn: 'ಎಲ್ಲಾ ಬೆಂಗಳೂರು ಕೇಂದ್ರಗಳು', count: PUBLIC_FACILITIES_DATABASE.length, color: '#3678F6' },
+    { key: 'janaushadhi_kendra', labelEn: 'PM Janaushadhi (Govt Medical Stores)', labelKn: 'ಪಿಎಂ ಜನೌಷಧಿ (ಔಷಧಿ ಮಳಿಗೆ)', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'janaushadhi_kendra').length, color: '#14B8A6' },
+    { key: 'hospital', labelEn: 'Govt Major Hospitals', labelKn: 'ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆಗಳು', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'hospital').length, color: '#EF4444' },
+    { key: 'canteen', labelEn: 'Indira Canteens (₹5/₹10 Meals)', labelKn: 'ಇಂದಿರಾ ಕ್ಯಾಂಟೀನ್ (ಊಟ & ತಿಂಡಿ)', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'canteen').length, color: '#F59E0B' },
+    { key: 'phc', labelEn: 'Namma Clinics & PHCs', labelKn: 'ನಮ್ಮ ಕ್ಲಿನಿಕ್ & ಯುಪಿಎಚ್‌ಸಿ', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'phc').length, color: '#10B981' },
+    { key: 'fair_price_shop', labelEn: 'Fair Price Ration Shops', labelKn: 'ನ್ಯಾಯಬೆಲೆ ರೇಷನ್ ಅಂಗಡಿಗಳು', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'fair_price_shop').length, color: '#F97316' },
+    { key: 'service_centre', labelEn: 'Bangalore One Centres', labelKn: 'ಬೆಂಗಳೂರು ಒನ್ ಕೇಂದ್ರಗಳು', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'service_centre').length, color: '#3B82F6' },
+    { key: 'iti', labelEn: 'Government ITIs', labelKn: 'ಸರ್ಕಾರಿ ಐಟಿಐಗಳು', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'iti').length, color: '#EC4899' },
+    { key: 'college', labelEn: 'Govt Colleges', labelKn: 'ಸರ್ಕಾರಿ ಕಾಲೇಜುಗಳು', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'college').length, color: '#8B5CF6' },
+    { key: 'school', labelEn: 'Govt Schools', labelKn: 'ಸರ್ಕಾರಿ ಶಾಲೆಗಳು', count: PUBLIC_FACILITIES_DATABASE.filter(f => f.category === 'school').length, color: '#6366F1' }
   ];
 
   const filteredFacilities = PUBLIC_FACILITIES_DATABASE.filter((fac) => {
@@ -84,7 +85,7 @@ export const MapView: React.FC = () => {
     if (viewMode !== 'map' || !mapContainerRef.current) return;
 
     if (!mapInstanceRef.current) {
-      // Default centre: Bengaluru (Victoria Hospital / City Centre)
+      // Default centre: Bengaluru (City Centre)
       const initialMap = L.map(mapContainerRef.current, {
         center: [12.9716, 77.5946],
         zoom: 12,
@@ -116,13 +117,16 @@ export const MapView: React.FC = () => {
     filteredFacilities.forEach((fac) => {
       const getMarkerColor = (cat: string) => {
         switch (cat) {
+          case 'janaushadhi_kendra': return '#14B8A6';
           case 'hospital': return '#EF4444';
+          case 'canteen': return '#F59E0B';
           case 'phc': return '#10B981';
           case 'chc': return '#06B6D4';
-          case 'school': return '#F59E0B';
-          case 'college': return '#8B5CF6';
-          case 'iti': return '#EC4899';
           case 'fair_price_shop': return '#F97316';
+          case 'service_centre': return '#3B82F6';
+          case 'iti': return '#EC4899';
+          case 'college': return '#8B5CF6';
+          case 'school': return '#6366F1';
           default: return '#3B82F6';
         }
       };
@@ -182,12 +186,12 @@ export const MapView: React.FC = () => {
             {isEn ? 'OpenStreetMap Civic Directory' : 'ನಾಗರಿಕ ಸೇವಾ ನಕ್ಷೆ'}
           </span>
           <h1 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight mt-1">
-            {isEn ? 'Interactive Public-Service Maps' : 'ಸಾರ್ವಜನಿಕ ಸೇವಾ ನಕ್ಷೆ ಮತ್ತು ಸೌಲಭ್ಯಗಳು'}
+            {isEn ? 'Bengaluru Public Services, Healthcare & Food Map' : 'ಬೆಂಗಳೂರು ಸಾರ್ವಜನಿಕ ಸೇವೆಗಳು, ಆರೋಗ್ಯ ಮತ್ತು ಆಹಾರ ನಕ್ಷೆ'}
           </h1>
           <p className="text-xs md:text-sm text-slate-300 max-w-2xl mt-1">
             {isEn
-              ? 'Explore 8 layers of verified government facilities in Bengaluru and Karnataka: hospitals, schools, colleges, ITIs, fair-price ration shops, and Bangalore One citizen centres.'
-              : '೮ ಪ್ರಮುಖ ಸಾರ್ವಜನಿಕ ಸೇವಾ ಪದರಗಳು: ಆಸ್ಪತ್ರೆಗಳು, ಶಾಲೆಗಳು, ಐಟಿಐ, ನ್ಯಾಯಬೆಲೆ ಅಂಗಡಿಗಳು ಮತ್ತು ನಾಗರಿಕ ಸೇವಾ ಕೇಂದ್ರಗಳು.'}
+              ? 'Explore verified government facilities across Bengaluru Urban: PM Janaushadhi Kendras (generic medicine stores with 50–90% discount), Indira Canteens (₹5/₹10 meals), major public hospitals, Namma Clinics, Fair Price Shops, and Bangalore One centres.'
+              : 'ಬೆಂಗಳೂರಿನ ಸಾರ್ವಜನಿಕ ಸೌಲಭ್ಯಗಳು: ಪ್ರಧಾನಮಂತ್ರಿ ಜನೌಷಧಿ ಕೇಂದ್ರಗಳು (ಶೇ. ೫೦-೯೦ ರಿಯಾಯಿತಿ ಔಷಧಗಳು), ಇಂದಿರಾ ಕ್ಯಾಂಟೀನ್‌ಗಳು, ಪ್ರಮುಖ ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆಗಳು, ನಮ್ಮ ಕ್ಲಿನಿಕ್, ರೇಷನ್ ಅಂಗಡಿಗಳು ಮತ್ತು ಬೆಂಗಳೂರು ಒನ್.'}
           </p>
         </div>
 

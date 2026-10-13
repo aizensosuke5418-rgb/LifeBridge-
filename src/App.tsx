@@ -32,6 +32,7 @@ import { WidowPensionView } from './components/views/WidowPensionView';
 import { CyberPoliceHelplinesView } from './components/views/CyberPoliceHelplinesView';
 import { ScStObcWelfareView } from './components/views/ScStObcWelfareView';
 import { PublicMoneyAccountabilityView } from './components/views/PublicMoneyAccountabilityView';
+import { ProjectPresentationView } from './components/views/ProjectPresentationView';
 
 const MainContent: React.FC = () => {
   const { 
@@ -74,6 +75,7 @@ const MainContent: React.FC = () => {
         {currentView === 'wallet' && <SupportWalletView />}
         {currentView === 'portals' && <PortalsDirectoryView />}
         {currentView === 'about' && <AboutView />}
+        {currentView === 'presentation' && <ProjectPresentationView />}
       </main>
 
       {/* Persistent Compare Floating Bar */}

@@ -122,6 +122,97 @@ export const AboutView: React.FC = () => {
               <li>{isEn ? 'Cannot override government department rules or deadlines' : 'ಸರ್ಕಾರಿ ನಿಯಮಗಳು ಅಥವಾ ದಿನಾಂಕಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗುವುದಿಲ್ಲ'}</li>
             </ul>
           </div>
+      {/* Project Research Contributors & Team Initials */}
+      <div className="p-6 rounded-2xl bg-[#0F1E36] border border-blue-900/40 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+              <UserCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-[11px] font-bold tracking-wider uppercase text-[#42DCC5]">
+                {isEn ? 'Student Research & Engineering Team' : 'ವಿದ್ಯಾರ್ಥಿ ಸಂಶೋಧನೆ ಮತ್ತು ತಾಂತ್ರಿಕ ತಂಡ'}
+              </span>
+              <h3 className="text-lg font-bold text-white">
+                {isEn ? 'Project Contributors & Core Initials' : 'ಪ್ರಾಜೆಕ್ಟ್ ಕೊಡುಗೆದಾರರು & ಸದಸ್ಯರು'}
+              </h3>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setCurrentView('presentation')}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#3678F6] hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-500/20 transition-all cursor-pointer self-start sm:self-auto"
+          >
+            <span>{isEn ? 'Open Project Presentation Guide' : 'ಪ್ರಾಜೆಕ್ಟ್ ಪ್ರಸ್ತುತಿ ಮಾರ್ಗದರ್ಶಿ'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <p className="text-xs text-slate-300 leading-relaxed">
+          {isEn
+            ? 'LifeBridge was researched, engineered, and designed collaboratively between Pre-University (PU) and University student researchers.'
+            : 'ಲೈಫ್‌ಬ್ರಿಡ್ಜ್ ಯೋಜನೆಯು ಪಿಯು (PU) ಕಾಲೇಜು ಮತ್ತು ವಿಶ್ವವಿದ್ಯಾಲಯದ ವಿದ್ಯಾರ್ಥಿ ಸಂಶೋಧಕರ ಸಹಯೋಗದಲ್ಲಿ ರೂಪುಗೊಂಡಿದೆ.'}
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* PU College Members */}
+          <div className="p-4 rounded-xl bg-[#0B1526] border border-blue-900/30 space-y-3">
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-blue-400">
+                {isEn ? 'PU College Research Members' : 'ಪಿಯು ಕಾಲೇಜು ಸಂಶೋಧನಾ ಸದಸ್ಯರು'}
+              </h4>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">PU Team</span>
+            </div>
+            <ul className="space-y-2 text-xs">
+              <li className="flex items-start gap-2.5">
+                <span className="w-6 h-6 rounded-md bg-blue-500/20 border border-blue-500/40 text-blue-300 text-[11px] font-bold flex items-center justify-center shrink-0">R</span>
+                <div>
+                  <p className="text-white font-semibold">Raj</p>
+                  <p className="text-[11px] text-slate-400">{isEn ? 'Field Research & Ground Verification Checklists' : 'ಕ್ಷೇತ್ರ ಸಂಶೋಧನೆ ಮತ್ತು ನೆಲಮಟ್ಟದ ಪರಿಶೀಲನೆ'}</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-6 h-6 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-bold flex items-center justify-center shrink-0">K</span>
+                <div>
+                  <p className="text-white font-semibold">Kushi</p>
+                  <p className="text-[11px] text-slate-400">{isEn ? 'User Experience & Student Journey Mapping' : 'ಬಳಕೆದಾರ ಅನುಭವ ಮತ್ತು ವಿದ್ಯಾರ್ಥಿ ಹಂತಗಳ ವಿನ್ಯಾಸ'}</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-6 h-6 rounded-md bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[11px] font-bold flex items-center justify-center shrink-0">S</span>
+                <div>
+                  <p className="text-white font-semibold">Saubhiya</p>
+                  <p className="text-[11px] text-slate-400">{isEn ? 'Karnataka State Schemes & Kannada Localization' : 'ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯೋಜನೆಗಳು ಮತ್ತು ಕನ್ನಡ ಸ್ಥಳೀಕರಣ'}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* University Members */}
+          <div className="p-4 rounded-xl bg-[#0B1526] border border-purple-900/30 space-y-3">
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-purple-400">
+                {isEn ? 'University Research Members' : 'ವಿಶ್ವವಿದ್ಯಾಲಯ ಸಂಶೋಧನಾ ಸದಸ್ಯರು'}
+              </h4>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">University Team</span>
+            </div>
+            <ul className="space-y-2 text-xs">
+              <li className="flex items-start gap-2.5">
+                <span className="w-6 h-6 rounded-md bg-purple-500/20 border border-purple-500/40 text-purple-300 text-[11px] font-bold flex items-center justify-center shrink-0">AJ</span>
+                <div>
+                  <p className="text-white font-semibold">Arfa Jasmine</p>
+                  <p className="text-[11px] text-slate-400">{isEn ? 'Civic Tech Architecture & Public Accountability Watchdog' : 'ನಾಗರಿಕ ವಾಸ್ತುಶಿಲ್ಪ & ಸಾರ್ವಜನಿಕ ಹಣಕಾಸು ವಿಶ್ಲೇಷಣೆ'}</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-6 h-6 rounded-md bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-[11px] font-bold flex items-center justify-center shrink-0">A</span>
+                <div>
+                  <p className="text-white font-semibold">Akshaya</p>
+                  <p className="text-[11px] text-slate-400">{isEn ? 'Systems Logic, Privacy Constitution & Emergency Protocols' : 'ಸಿಸ್ಟಮ್ ಲಾಜಿಕ್, ಗೌಪ್ಯತೆ ಸಂವಿಧಾನ & ತುರ್ತು ಪ್ರೋಟೋಕಾಲ್'}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

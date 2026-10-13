@@ -148,6 +148,8 @@ export interface PublicFacility {
     | 'hospital' 
     | 'phc' 
     | 'chc' 
+    | 'janaushadhi_kendra'
+    | 'canteen'
     | 'school' 
     | 'college' 
     | 'iti' 

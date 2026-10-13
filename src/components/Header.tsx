@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Globe, Sparkles, Bookmark, Compass, Share2, Check } from 'lucide-react';
+import { Menu, X, Globe, Sparkles, Bookmark, Compass, Share2, Check, Award } from 'lucide-react';
 import { useApp, ViewType } from '../context/AppContext';
 import { BridgeLogo } from './BridgeLogo';
 
@@ -46,12 +46,14 @@ export const Header: React.FC = () => {
     { view: 'dashboard', labelEn: 'Find Schemes', labelKn: 'ಯೋಜನೆ ಹುಡುಕಿ' },
     { view: 'categories', labelEn: 'Categories', labelKn: 'ವಿಭಾಗವಾರು' },
     { view: 'explore_schemes', labelEn: 'All Schemes', labelKn: 'ಎಲ್ಲಾ ಯೋಜನೆಗಳು' },
+    { view: 'presentation', labelEn: 'Project Guide & Team', labelKn: 'ಪ್ರಾಜೆಕ್ಟ್ ಪ್ರಸ್ತುತಿ' },
     { view: 'guides', labelEn: 'Application Guides', labelKn: 'ಮಾರ್ಗದರ್ಶಿ' },
     { view: 'maps', labelEn: 'Public Maps', labelKn: 'ಸೇವಾ ನಕ್ಷೆ' },
     { view: 'wallet', labelEn: 'My Wallet', labelKn: 'ವಾಲೆಟ್' }
   ];
 
   const fullNavItems: { view: ViewType; labelEn: string; labelKn: string; badge?: string }[] = [
+    { view: 'presentation', labelEn: '⭐ 0. Project Defense & Sector Guide (Raj, Kushi, Saubhiya | Arfa Jasmine, Akshaya)', labelKn: '⭐ ೦. ಪ್ರಾಜೆಕ್ಟ್ ಪ್ರಸ್ತುತಿ & ಸಮಗ್ರ ವಿವರಣೆ', badge: 'Defense' },
     { view: 'home', labelEn: '1. Home', labelKn: '೧. ಮುಖಪುಟ' },
     { view: 'dashboard', labelEn: '2. Find My Schemes (Questionnaire)', labelKn: '೨. ನನ್ನ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ (ಪ್ರಶ್ನಾವಳಿ)' },
     { view: 'categories', labelEn: '3. Schemes by Category (Sector Breakdown)', labelKn: '೩. ವಿಭಾಗವಾರು ಯೋಜನೆಗಳು' },

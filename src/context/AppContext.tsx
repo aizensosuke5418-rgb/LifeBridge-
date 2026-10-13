@@ -23,7 +23,8 @@ export type ViewType =
   | 'ask_lifebridge'
   | 'wallet'
   | 'portals'
-  | 'about';
+  | 'about'
+  | 'presentation';
 
 interface AppContextType {
   language: Language;
